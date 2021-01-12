@@ -6,8 +6,18 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-
+from scrapy.exporters import JsonItemExporter, CsvItemExporter
 
 class CrawlerEggheadPipeline:
+    def __init__(self):
+        self.file = open("EggheadCrawlerFile.csv", 'wb')
+        self.exporter = CsvItemExporter(self.file, encoding='euc-kr')
+        self.exporter.start_exporting()
+
     def process_item(self, item, spider):
+        self.exporter.export_item(item)
         return item
+
+    def spider_closed(self, spider):
+        self.exporter.finish_exporting()
+        self.file.close()

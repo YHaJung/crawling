@@ -19,12 +19,12 @@ from scrapy.selector import Selector
 #sys.setdefaultencoding('utf-8')
 
 f1 = open("C:\\Users\\hj99y\\Desktop\\github\\crawling\\result\\egghead.txt", 'r')
-egghead_links = []
+eggheadLinks = []
 while True:
     line = f1.readline()
     if not line : break
     line = line[:-1]
-    egghead_links.append(line)
+    eggheadLinks.append(line)
 #print(egghead_links)
 f1.close()
 f1 = open("C:\\Users\\hj99y\\Desktop\\github\\crawling\\result\\egghead_img.txt", 'r')
@@ -42,24 +42,32 @@ class crawler_egghead_Spider(scrapy.Spider):
     name = "egghead"  #spider 이름
     allowed_domains = ["egghead.io"]  #최상위 도메인
     #start_urls = ["https://egghead.io/search"]
+    count = 0
 
     def start_requests(self):
-        #for i in range(0, len(egghead_links), 1):
-        for i in range(0, 3, 1):
-            yield scrapy.Request(egghead_links[i], self.parse_egghead)
+        for i in range(0, len(eggheadLinks), 1):
+            #for i in range(30, 40, 1):
+            yield scrapy.Request(eggheadLinks[i], self.parse_egghead)
 
     def parse_egghead(self, response):
         item = CrawlerEggheadItem()
         item['lectureName'] = response.xpath('//h1/text()').extract()[0]
         item['price'] = -1  # 사이트 자체가 년간 멤버십
-        #item['thumbnail']
+        item['lectureLink'] = eggheadLinks[self.count]
+        item['thumbnail'] = eggheadImgs[self.count]
+        self.count += 1
         item['level'] = 6 #unknown 나중에 코드 돌려보기
         item['lecturer'] = response.xpath('//h2/text()').extract()[0]  # ==extract_first()
         item['siteIdx'] = 8 #Egghead
         item['rating'] = float(response.xpath('//*[@id="App-react-component"]/div/div[2]/div/div/div[2]/div/div/div[1]/div/div[3]/div[1]/div[6]/strong/text()').extract()[0])
-        item['contents'] = response.xpath('//*[@id="App-react-component"]/div/div[2]/div/div/div[3]/div/div/div/div/div[1]/div[1]/div/div[1]/div[2]/a/div/h2/text()').extract()
+        #목차 list를 string으로
+        contents = response.xpath('//*[@id="App-react-component"]/div/div[2]/div/div/div[3]/div/div/div/div/div[1]/div[1]/div/div[1]/div[2]/a/div/h2/text()').extract()
+        item['contents'] = ''
+        for content in contents:
+            item['contents'] = item['contents']+content
         #item['category'] = 'unknown'
-        item['subCategory'] = response.xpath('//*[@id="App-react-component"]/div/div[2]/div/div/div[2]/div/div/div[1]/div/div[2]/div[2]/div/div/a/span/text()').extract()
+        item['subCategory'] = response.xpath('//a[contains(@href, "topic")]/span/text()').extract()
+        print(item['subCategory'])
         item['type'] = "on" #online
         item['language'] = "en" #English
 
@@ -73,7 +81,8 @@ class crawler_egghead_Spider(scrapy.Spider):
             minute = int(initialDuration.split('m')[0])
             item['totalDuration'] = minute
         item['numOfLectures'] = len(item['contents'])
-        print(item)
+        yield item
+
     """
     #text 내용은 url 뒤에 /text()
     #tag는 url 뒤에 /@ 하고 tag이름 ex. /@href
