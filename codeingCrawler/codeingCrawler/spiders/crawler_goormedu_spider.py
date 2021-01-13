@@ -25,7 +25,7 @@ f1.close()
 class crawler_goormedu_Spider(scrapy.Spider):
     name = "goormedu"  #spider 이름
     allowed_domains = ["edu.goorm.io"]  #최상위 도메인
-    count = 0
+
     def start_requests(self):
         for i in range(0, len(goormeduLinks), 1):
             #for i in range(20, 40, 1):
@@ -41,7 +41,6 @@ class crawler_goormedu_Spider(scrapy.Spider):
             item['price'] = response.xpath('//*[@data-mkt-id="edu_lecture_div_lecturePrice"]/span/text()').extract()[0]
 
         item['lectureLink'] = response.xpath('/html/head/link[@rel="canonical"]/@href').extract()[0]
-        self.count += 1
         item['thumbnail'] = response.xpath('//*[@data-mkt-id="edu_lectureDetail_img_thumbnail"]/@style').extract()[0].split("url(")[1].split(")")[0]
         item['level'] = response.xpath('//*[@class="_1dUlQs container-fluid"]/div[2]/div[2]/span/text()').extract()[0]
         item['lecturer'] = response.xpath('//*[@class="card-body"]/div[1]/div[2]/div[1]/text()').extract()[0]

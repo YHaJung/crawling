@@ -11,8 +11,9 @@ from scrapy.exporters import JsonItemExporter, CsvItemExporter
 
 class CodeingcrawlerPipeline:
     def __init__(self):
-        self.file = open("outputs\\EggheadCrawlingFile.csv", 'wb')
+        #self.file = open("outputs\\EggheadCrawlingFile.csv", 'wb')
         #self.file = open("outputs\\GoormeduCrawlingFile.csv", 'wb')
+        self.file = open("outputs\\KmoocCrawlingFile.csv", 'wb')
         self.exporter = CsvItemExporter(self.file, encoding='euc-kr')
         self.exporter.start_exporting()
 
