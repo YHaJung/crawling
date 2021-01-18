@@ -1,0 +1,17 @@
+https://ko.khanacademy.org/computing/computer-programming/programming
+https://ko.khanacademy.org/computing/computer-programming/html-css
+https://ko.khanacademy.org/computing/computer-programming/sql
+https://ko.khanacademy.org/computing/computer-programming/programming-games-visualizations
+https://ko.khanacademy.org/computing/computer-programming/programming-natural-simulations
+https://ko.khanacademy.org/computing/computer-programming/html-css-js
+https://ko.khanacademy.org/computing/computer-programming/html-js-jquery
+https://ko.khanacademy.org/computing/computer-programming/meet-the-computing-professional
+https://ko.khanacademy.org/computing/computer-science/algorithms
+https://ko.khanacademy.org/computing/computer-science/cryptography
+https://ko.khanacademy.org/computing/computer-science/informationtheory
+https://ko.khanacademy.org/computing/computer-science/how-computers-work2
+https://ko.khanacademy.org/computing/computer-science/internet-intro
+https://ko.khanacademy.org/computing/hour-of-code/hour-of-drawing-code
+https://ko.khanacademy.org/computing/hour-of-code/hour-of-html
+https://ko.khanacademy.org/computing/hour-of-code/hour-of-sql
+https://ko.khanacademy.org/computing/hour-of-code/hour-of-code-for-teachers
