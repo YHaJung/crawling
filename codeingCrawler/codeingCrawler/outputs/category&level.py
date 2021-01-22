@@ -1,5 +1,6 @@
 import csv
 import pandas as pd
+import re
 
 originSubCategory = []
 
@@ -23,7 +24,7 @@ numOfLectures = [] # 총 강의 개수 int
 
 subCategoryList = {'VR/AR':'가상현실','ajax':'ajax','BlockChain':['블록체인','blockchain'],'GraphQL':'graphql','Kaggle':['캐글','kaggle'],'Reinforcement Learning':['reinforce','강화학습'],'Hadoop':['하둡','hadoop'],'MySQL':'mysql','MongoDB':'mongodb','MariaDB':'mariadb','Php':'php','JPA':'jpa','ios':'ios','JQuery':['jquery','제이쿼리'],
               'Angular':['angular','앵귤러', 'angularjs'],'TypeScript':['타입스크립트','typescript'],'React.js':['리액트','react.js','react'], 'React Native':['리액트네이티브','reactnative'],
-               'Html':'html','JavaScript':['자바스크립트','javascript'],'Scratch':['scratch','스크래치'],'Laravel':['laravel','라라벨'],
+               'Html':'html','JavaScript':['자바스크립트','javascript', 'js'],'Scratch':['scratch','스크래치'],'Laravel':['laravel','라라벨'],
                'BootStrap':['부트스트랩','bootstrap'],'Node.js':['노드','node'],'Spring':['스프링','spring'],'Django':['django','장고'],
                'Firebase':['파이어베이스','firebase'],'AWS':['aws','아마존'],'Ruby':['루비','ruby'],'Flask':['flask','플라스크'],'Oracle':['오라클','oracle'],
                'C':'씨언어','C++':'c++','C#':['c#','씨샵'],'Python':['python','파이썬'],'Java':['자바','java'],'Lua':['루아','lua'],'Android':['android','안드로이드'],
@@ -32,9 +33,11 @@ subCategoryList = {'VR/AR':'가상현실','ajax':'ajax','BlockChain':['블록체
                'Anaconda':['anaconda','아나콘다'],'Numpy':['넘파이','numpy'],'Azure':'azure','Serverless':['서버리스','serverless'],'Kubernetes':['쿠버네티스','kubernetes'],
                'IoT':'사물인터넷','OpenCV':['오픈씨브이','opencv'],'Unreal Engine':['언리얼','unreal'],'Objective-C':['오브젝티브-c','objective-c'],
                'Unity':['유니티','unity'],'Linux':['리눅스','linux'],'Git':['깃','git'],'OAuth':'oauth','WordPress':['워드프레스','wordpress'],
-               'Computer Vision':['컴퓨터비전','computervision'],'Deep Learning':['딥러닝','deeplearning'],'Machine Learning':['머신러닝','machinelearning']}
+               'Computer Vision':['컴퓨터비전','computervision'],'Deep Learning':['딥러닝','deeplearning'],'Machine Learning':['머신러닝','machinelearning'],
+            'CSS':'css','C':['c ','c언어'],'Go':'go ','ROR':' ror','VR/AR':['virtual reality','vr ',' ar '],'IoT':' iot','R':[' r ','r언어']
+            }
 
-subCategoryList2 = {'CSS':'css','JavaScript':' js','C':['c ','c언어'],'Go':'go ','ROR':' ror','VR/AR':['virtual reality','vr ',' ar '],'IoT':' iot','R':[' r ','r언어']}
+#subCategoryList2 = {'CSS':'css','JavaScript':' js','C':['c ','c언어'],'Go':'go ','ROR':' ror','VR/AR':['virtual reality','vr ',' ar '],'IoT':' iot','R':[' r ','r언어']}
 
 sub = ['web','app','back-end','fullStack','game','ai','algorithm','network','dataScience','cs']
 
@@ -54,7 +57,7 @@ lv1 = ['begin','기본','기초','basic','기반','start','스타터','처음','
 lv3 = ['중급','intermediate','조금 더','활용']
 lv5 = ['응용','심화','실무','고급','실전','advanced','clone','클론','complex']
 
-with open('EggheadCrawlingFile.csv','rt') as f:
+with open('KhanacademyCrawlingFile.csv','rt') as f:
     reader = csv.DictReader(f)#확인하기
 
     for c in reader:
@@ -142,7 +145,7 @@ for k, v in subCategoryList.items():
     else:
         tmpSubCategory = lectureName[idx]
     '''
-    tmpSubCategory = originSubCategory[idx].replace(".", ",")
+    tmpSubCategory = re.sub("[:,로/]", " ", lectureName[idx])
 
     '''
     if str(type(v)) == "<class 'str'>": # value가 하나
@@ -151,10 +154,10 @@ for k, v in subCategoryList.items():
     else:
     '''
     for element in v:
-        if element in tmpSubCategory.lower().split(','):
+        if element in tmpSubCategory.lower().split():
             subCategory[idx] = subCategory[idx] + k+","
             break
-
+"""
 for k, v in subCategoryList2.items():
      for idx in range(len(lectureName)):
           #if originSubCategory[idx].strip() != "":
@@ -166,7 +169,7 @@ for k, v in subCategoryList2.items():
           else:
               tmpSubCategory = lectureName[idx]
           '''
-          tmpSubCategory = originSubCategory[idx].replace(".", ",")
+          tmpSubCategory = lectureName[idx]
           '''
           if str(type(v)) == "<class 'str'>":  # value가 하나
               if v in tmpSubCategory.lower():
@@ -175,10 +178,10 @@ for k, v in subCategoryList2.items():
           else:
           '''
           for element in v:
-              if element in tmpSubCategory.lower().split(','):
+              if element in tmpSubCategory.lower().split():
                   subCategory[idx] = subCategory[idx] + k + ","
                   break
-
+"""
 for i in range(len(subCategory)):
     if subCategory[i].endswith(','):
        a = subCategory[i][:-1].split(',')
@@ -270,9 +273,9 @@ print(
 '''
 '''
 for i in range(len(lectureName)):
-    print(lectureName[i], " : ", category[i], " / ", originSubCategory[i], " - ", subCategory[i], " / ", level[i])
-'''
+    print(lectureName[i], " : ", category[i], " / ", subCategory[i], " / ", level[i])
 
+'''
 df1 = pd.DataFrame({
     'lectureName' : lectureName,
     'price':price,
@@ -293,7 +296,7 @@ df1 = pd.DataFrame({
 
 print(df1)
 
-df1.to_csv('EggheadCrawlingFile2.csv', encoding='utf-8-sig')
+df1.to_csv('KhanacademyCrawlingFile2.csv', encoding='utf-8-sig')
 
 
 
