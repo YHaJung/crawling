@@ -1,14 +1,14 @@
 category,contents,language,lectureLink,lectureName,lecturer,level,numOfLectures,price,rating,siteIdx,subCategory,thumbnail,totalDuration,type
-unknown,"프로그래밍이란?,그리기 기본,색칠하기,변수,애니메이션 기본 사항,인터랙티브 프로그램,보너스: 변수로 크기 조정하기,텍스트와 문자열,함수,로직과 if문,프로그램 디버깅,반복하기,깔끔한 코드 작성하기,배열,객체,객체지향적 설계,더 나은 프로그래머 되기",en,https://ko.khanacademy.org/computing/computer-programming/programming,단원: JS 란? : 그리기와 애니메이션,unknown,6,17,0,6,3,unknown,unknown,unknown,on
-unknown,"HTML이란?,CSS란?,HTML 태그 더 알아보기,CSS 텍스트 속성,웹 개발 도구,CSS 레이아웃,CSS 선택자 더 알아보기,CSS를 포함하는 다른 방법,더 배우기",en,https://ko.khanacademy.org/computing/computer-programming/html-css,단원: HTML/CSS: 웹 페이지 제작이란?,unknown,6,9,0,6,3,unknown,unknown,unknown,on
-unknown,"SQL이란?,심화: SQL 쿼리,SQL의 관계형 쿼리,SQL을 이용하여 데이터베이스 수정하기,SQL더 배우기",en,https://ko.khanacademy.org/computing/computer-programming/sql,단원: SQL이란: 데이터 쿼리와 관리,unknown,6,5,0,6,3,unknown,unknown,unknown,on
-unknown,"게임과 시각화란?,장면 관리,버튼,사이드 스크롤러 만들기: Hoppy Beaver,메모리 게임 만들기,변환,3D 도형,심화 개발 도구",en,https://ko.khanacademy.org/computing/computer-programming/programming-games-visualizations,단원: 심화 JS: 게임과 시각화,unknown,6,8,0,6,3,unknown,unknown,unknown,on
-unknown,"내추럴 시뮬레이션이란?,무작위성,노이즈,벡터,힘,각운동,진동,입자 시스템",en,https://ko.khanacademy.org/computing/computer-programming/programming-natural-simulations,단원: 심화 JS: 내추럴 시뮬레이션,unknown,6,8,0,6,3,unknown,unknown,unknown,on
-unknown,"인터랙티브 웹 페이지를 만들 준비하기,JS와 DOM,DOM 접근 메소드,DOM 수정하기,DOM 이벤트,DOM 애니메이션,웹 페이지에 JS 라이브러리 사용하기,더 배우기",en,https://ko.khanacademy.org/computing/computer-programming/html-css-js,단원: HTML/JS: 인터랙티브 웹 페이지 만들기,unknown,6,8,0,6,3,unknown,unknown,unknown,on
-unknown,"jQuery에 오신 것을 환영합니다,jQuery의 DOM 접근,jQuery를 이용한 DOM 변경,jQuery 기술,jQuery의 DOM 이벤트,jQuery로 폼 처리하기,DOM 애니메이션 & jQuery의 효과,더 배우기",en,https://ko.khanacademy.org/computing/computer-programming/html-js-jquery,단원: HTML/JS: jQuery로 인터랙티브 웹 페이지 만들기,unknown,6,8,0,6,3,unknown,unknown,unknown,on
-unknown,전문가를 만나보세요,en,https://ko.khanacademy.org/computing/computer-programming/meet-the-computing-professional-unit,단원: 전문가를 만나보세요,unknown,6,1,0,6,3,unknown,unknown,unknown,on
-unknown,"알고리즘이란?,이진 검색,점근적 표기법,선택 정렬,삽입 정렬,재귀 알고리즘,하노이의 탑,병합 정렬,퀵 정렬,그래프 표현,너비우선탐색,더 배우기",en,https://ko.khanacademy.org/computing/computer-science/algorithms,단원: 알고리즘,unknown,6,12,0,6,3,unknown,unknown,unknown,on
-unknown,"고대 암호학,암호,암호화 도전 101,현대 암호학,모듈로 연산,소수 판별법,랜덤 알고리즘",en,https://ko.khanacademy.org/computing/computer-science/cryptography,단원: 암호학이란?,unknown,6,7,0,6,3,unknown,unknown,unknown,on
-unknown,"고대 정보이론,현대 정보이론",en,https://ko.khanacademy.org/computing/computer-science/informationtheory,단원: 정보이론이란?,unknown,6,2,0,6,3,unknown,unknown,unknown,on
-unknown,"코드로 그리기,웹 페이지 만들기,SQL 데이터베이스 만들기",en,https://ko.khanacademy.org/computing/hour-of-code/hour-of-code-lessons,단원: 아워 오브 코드 수업,unknown,6,3,0,6,3,unknown,unknown,unknown,on
-unknown,아워 오브 코드 (학부모 및 선생님 용),en,https://ko.khanacademy.org/computing/hour-of-code/hour-of-code-resources,단원: 추가 자료,unknown,6,1,0,6,3,unknown,unknown,unknown,on
+,"프로그래밍이란?,그리기 기본,색칠하기,변수,애니메이션 기본 사항,인터랙티브 프로그램,보너스: 변수로 크기 조정하기,텍스트와 문자열,함수,로직과 if문,프로그램 디버깅,반복하기,깔끔한 코드 작성하기,배열,객체,객체지향적 설계,더 나은 프로그래머 되기",en,https://ko.khanacademy.org/computing/computer-programming/programming,JS 란? : 그리기와 애니메이션,unknown,,17,0,6,3,,unknown,unknown,on
+,"HTML이란?,CSS란?,HTML 태그 더 알아보기,CSS 텍스트 속성,웹 개발 도구,CSS 레이아웃,CSS 선택자 더 알아보기,CSS를 포함하는 다른 방법,더 배우기",en,https://ko.khanacademy.org/computing/computer-programming/html-css,HTML/CSS: 웹 페이지 제작이란?,unknown,,9,0,6,3,,unknown,unknown,on
+,"SQL이란?,심화: SQL 쿼리,SQL의 관계형 쿼리,SQL을 이용하여 데이터베이스 수정하기,SQL더 배우기",en,https://ko.khanacademy.org/computing/computer-programming/sql,SQL이란: 데이터 쿼리와 관리,unknown,,5,0,6,3,,unknown,unknown,on
+,"게임과 시각화란?,장면 관리,버튼,사이드 스크롤러 만들기: Hoppy Beaver,메모리 게임 만들기,변환,3D 도형,심화 개발 도구",en,https://ko.khanacademy.org/computing/computer-programming/programming-games-visualizations,심화 JS: 게임과 시각화,unknown,,8,0,6,3,,unknown,unknown,on
+,"내추럴 시뮬레이션이란?,무작위성,노이즈,벡터,힘,각운동,진동,입자 시스템",en,https://ko.khanacademy.org/computing/computer-programming/programming-natural-simulations,심화 JS: 내추럴 시뮬레이션,unknown,,8,0,6,3,,unknown,unknown,on
+,"인터랙티브 웹 페이지를 만들 준비하기,JS와 DOM,DOM 접근 메소드,DOM 수정하기,DOM 이벤트,DOM 애니메이션,웹 페이지에 JS 라이브러리 사용하기,더 배우기",en,https://ko.khanacademy.org/computing/computer-programming/html-css-js,HTML/JS: 인터랙티브 웹 페이지 만들기,unknown,,8,0,6,3,,unknown,unknown,on
+,"jQuery에 오신 것을 환영합니다,jQuery의 DOM 접근,jQuery를 이용한 DOM 변경,jQuery 기술,jQuery의 DOM 이벤트,jQuery로 폼 처리하기,DOM 애니메이션 & jQuery의 효과,더 배우기",en,https://ko.khanacademy.org/computing/computer-programming/html-js-jquery,HTML/JS: jQuery로 인터랙티브 웹 페이지 만들기,unknown,,8,0,6,3,,unknown,unknown,on
+,전문가를 만나보세요,en,https://ko.khanacademy.org/computing/computer-programming/meet-the-computing-professional-unit,전문가를 만나보세요,unknown,,1,0,6,3,,unknown,unknown,on
+,"알고리즘이란?,이진 검색,점근적 표기법,선택 정렬,삽입 정렬,재귀 알고리즘,하노이의 탑,병합 정렬,퀵 정렬,그래프 표현,너비우선탐색,더 배우기",en,https://ko.khanacademy.org/computing/computer-science/algorithms,알고리즘,unknown,,12,0,6,3,,unknown,unknown,on
+,"고대 암호학,암호,암호화 도전 101,현대 암호학,모듈로 연산,소수 판별법,랜덤 알고리즘",en,https://ko.khanacademy.org/computing/computer-science/cryptography,암호학이란?,unknown,,7,0,6,3,,unknown,unknown,on
+,"고대 정보이론,현대 정보이론",en,https://ko.khanacademy.org/computing/computer-science/informationtheory,정보이론이란?,unknown,,2,0,6,3,,unknown,unknown,on
+,"코드로 그리기,웹 페이지 만들기,SQL 데이터베이스 만들기",en,https://ko.khanacademy.org/computing/hour-of-code/hour-of-code-lessons,아워 오브 코드 수업,unknown,,3,0,6,3,,unknown,unknown,on
+,아워 오브 코드 (학부모 및 선생님 용),en,https://ko.khanacademy.org/computing/hour-of-code/hour-of-code-resources,추가 자료,unknown,,1,0,6,3,,unknown,unknown,on

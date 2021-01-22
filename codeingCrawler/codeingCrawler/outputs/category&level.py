@@ -1,24 +1,28 @@
 import csv
 import pandas as pd
 
-lectureName =[]
-category = []
-subCategory = []
 originSubCategory = []
-cost = []
-lectureLink = []
-thumbUrl = []
-level = []
-profName =[]
-rating = []
-source = []
-tag = []
 
+lectureName = [] # 강의명 string
+price = []  # 가격 int
+lectureLink = [] # 강의링크 string
+thumbnail = []  # 썸네일 사진링크 string
+level = [] # 강의레벨 int(1~5)/정보 없으면 추출/그래도 모르면 6
+lecturer = []
+siteIdx = [] # 사이트번호 int(기준??)
+rating = [] # 평점(나중에 내부 리뷰평점으로 대체) - float1~5
+contents = [] # 강의목차 - string
+category = []
+subCategory = [] # programming language
+type =[] # 온라인/오프라인 string on/장소명
+language = [] # 언어 한글이면 ko, 영어면 en
+totalDuration = []  # 총 강의길이 int 분단위
+numOfLectures = [] # 총 강의 개수 int
 
 
 
 subCategoryList = {'VR/AR':'가상현실','ajax':'ajax','BlockChain':['블록체인','blockchain'],'GraphQL':'graphql','Kaggle':['캐글','kaggle'],'Reinforcement Learning':['reinforce','강화학습'],'Hadoop':['하둡','hadoop'],'MySQL':'mysql','MongoDB':'mongodb','MariaDB':'mariadb','Php':'php','JPA':'jpa','ios':'ios','JQuery':['jquery','제이쿼리'],
-              'Angular':['angular','앵귤러'],'TypeScript':['타입스크립트','typescript'],'React.js':['리액트','react.js','react'], 'React Native':['리액트네이티브','reactnative'],
+              'Angular':['angular','앵귤러', 'angularjs'],'TypeScript':['타입스크립트','typescript'],'React.js':['리액트','react.js','react'], 'React Native':['리액트네이티브','reactnative'],
                'Html':'html','JavaScript':['자바스크립트','javascript'],'Scratch':['scratch','스크래치'],'Laravel':['laravel','라라벨'],
                'BootStrap':['부트스트랩','bootstrap'],'Node.js':['노드','node'],'Spring':['스프링','spring'],'Django':['django','장고'],
                'Firebase':['파이어베이스','firebase'],'AWS':['aws','아마존'],'Ruby':['루비','ruby'],'Flask':['flask','플라스크'],'Oracle':['오라클','oracle'],
@@ -44,52 +48,42 @@ algorithm = ['코딩테스트','알고리즘','algorithm','datastructure','자�
 network = ['해킹','hacking','네트워크','보안','암호','5g','security','encypt','악성코드','메타스플로잇','Metasploit']
 dataScience = ['hadoop','data','ds','데이터분석','시각화','visualization','pandas','sql','데이터','analytics','분석']
 cs = ['수학','확률', '자료구조','알고리즘','운영체제','operatingsystem','computerarchitecture','컴퓨터구조','datastructure','algorithm','softwareengineering','소프트웨어공학','컴퓨터과학','computerscience','statistic']
-language = ['객체','파이썬','c언어','c++','자바','java','python','자바스크립트','c#','스크래치','scratch','js','기초프로그래밍'] # 가장 마지막에 확인
+#language = ['객체','파이썬','c언어','c++','자바','java','python','자바스크립트','c#','스크래치','scratch','js','기초프로그래밍'] # 가장 마지막에 확인
 
 lv1 = ['begin','기본','기초','basic','기반','start','스타터','처음','초보','입문','초급','first','intro','쉽고','쉬운','쉽게','누구나','이해','일반인','첫','overview']
 lv3 = ['중급','intermediate','조금 더','활용']
 lv5 = ['응용','심화','실무','고급','실전','advanced','clone','클론','complex']
 
-with open('C:\\Users\\td170\\Downloads\\forPython.csv','rt', encoding='UTF8') as f:
+with open('EggheadCrawlingFile.csv','rt') as f:
     reader = csv.DictReader(f)#확인하기
 
     for c in reader:
-
         for k, v in c.items():
-            #print(k)
-
-            if (k == 'cost'):
-              cost.append(v)
-            elif (k == 'lectureName'):
-              lectureName.append(v)
-            elif (k == 'subCategory'):
-                originSubCategory.append(v)
-            elif (k == 'rating'):
-                rating.append(v)
-            elif (k == 'profName'):
-                profName.append(v)
-            elif (k == 'lectureLink'):
-                lectureLink.append(v)
-            elif (k == 'thumbUrl'):
-                thumbUrl.append(v)
-            elif (k == 'source'):
-                source.append(v)
-            elif (k == 'level'):
-                level.append(v)
-            elif (k == 'tag'):
-                tag.append(v)
+            if (k == 'lectureName') : lectureName.append(v)
+            elif (k == 'price') : price.append(v)
+            elif (k == 'lectureLink') : lectureLink.append(v)
+            elif (k == 'thumbnail') : thumbnail.append(v)
+            elif (k == 'level') : level.append(v)
+            elif (k == 'lecturer') : lecturer.append(v)
+            elif (k == 'siteIdx') : siteIdx.append(v)
+            elif (k == 'rating') : rating.append(v)
+            elif (k == 'contents') : contents.append(v)
+            elif (k == 'category') : category.append(v)
+            elif (k == 'subCategory') : originSubCategory.append(v)
+            elif (k == 'type') : type.append(v)
+            elif (k == 'language') : language.append(v)
+            elif (k == 'totalDuration') : totalDuration.append(v)
+            elif (k == 'numOfLectures') : numOfLectures.append(v)
 
 
-
-
-
-def check(keyword,list, element, idx):
+#띄워쓰기 없애기, keyword를 category에 추가
+def check(keyword, list, element, idx):
     for i in list:
         if i in element.lower().replace(" ",""):
             category[idx] = category[idx] + keyword +","
             break
 
-def check2(keyword,list, element, idx):
+def check2(keyword, list, element, idx):
     status = True
     for elements in sub:
         if elements in category[idx]:
@@ -105,13 +99,16 @@ def check2(keyword,list, element, idx):
 count = 0
 tmpLecName=""
 for e in range(len(lectureName)):
+    ''' # 사이트에 따라 tag 혹은 lectureName을 카테고리 분류 위해 사용
     if source[e] == "udacity" or source[e] =="fastcampus" or source[e] =="inflearn":
         tmpLecName = tag[e]
     else:
         tmpLecName = lectureName[e]
+    '''
+    tmpLecName = lectureName[e]
 
-    category.append("")
-    check("web",web, tmpLecName, count)
+    #category.append("")
+    check("web", web, tmpLecName, count)
     check("app", app, tmpLecName, count)
     check("backEnd", be, tmpLecName, count)
     check("fullstack", fullStack, tmpLecName, count)
@@ -123,9 +120,10 @@ for e in range(len(lectureName)):
     check("computerScience", cs, tmpLecName, count)
     check2("language", language, tmpLecName, count)
     count = count +1
-
+'''
 for i in range(len(lectureName)):
-    print(lectureName[i]," ",category[i][:-1])
+    print(lectureName[i]," - ", category[i][:-1])
+'''
 
 subIdx=0
 
@@ -133,46 +131,55 @@ for i in range(len(lectureName)):
     subCategory.append("")
 
 tmpSubCategory=""
-for k,v in subCategoryList.items():
 
+for k, v in subCategoryList.items():
   for idx in range(len(lectureName)):
-    if originSubCategory[idx].strip() != "":
-        continue
+    #if originSubCategory[idx].strip() != "":
+    #    continue
+    ''' # 사이트에 따라 tag 혹은 lectureName을 카테고리 분류 위해 사용
     if source[idx] == "fastcampus" or source[idx] =="udacity" or source[e] =="inflearn":
         tmpSubCategory = tag[idx]
     else:
         tmpSubCategory = lectureName[idx]
+    '''
+    tmpSubCategory = originSubCategory[idx].replace(".", ",")
 
+    '''
     if str(type(v)) == "<class 'str'>": # value가 하나
         if v in tmpSubCategory.lower().replace(" ",""):
             subCategory[idx] = subCategory[idx] + k+","
     else:
-        for element in v:
-            if element in tmpSubCategory.lower().replace(" ",""):
-                subCategory[idx] = subCategory[idx] + k+","
-                break
-for k, v in subCategoryList2.items():
+    '''
+    for element in v:
+        if element in tmpSubCategory.lower().split(','):
+            subCategory[idx] = subCategory[idx] + k+","
+            break
 
+for k, v in subCategoryList2.items():
      for idx in range(len(lectureName)):
-          if originSubCategory[idx].strip() != "":
-             continue
+          #if originSubCategory[idx].strip() != "":
+          #   continue
+
+          ''' # 사이트에 따라 tag 혹은 lectureName을 카테고리 분류 위해 사용
           if source[idx] == "fastcampus" or source[idx] == "udacity" or source[e] =="inflearn":
               tmpSubCategory = tag[idx]
           else:
               tmpSubCategory = lectureName[idx]
+          '''
+          tmpSubCategory = originSubCategory[idx].replace(".", ",")
+          '''
           if str(type(v)) == "<class 'str'>":  # value가 하나
               if v in tmpSubCategory.lower():
                   subCategory[idx] = subCategory[idx] + k + ","
 
           else:
-              for element in v:
-                  if element in tmpSubCategory.lower():
-                      subCategory[idx] = subCategory[idx] + k + ","
-                      break
-
+          '''
+          for element in v:
+              if element in tmpSubCategory.lower().split(','):
+                  subCategory[idx] = subCategory[idx] + k + ","
+                  break
 
 for i in range(len(subCategory)):
-
     if subCategory[i].endswith(','):
        a = subCategory[i][:-1].split(',')
     else:
@@ -188,16 +195,15 @@ for i in range(len(subCategory)):
                    break
 
     if subCategory[i].count('Java') > 1:
-
         a.remove('Java')
     for element in a:
         new=new+element+","
     subCategory[i] = new
-
+'''
 for i in range(len(originSubCategory)):
     if originSubCategory[i].strip() != "":
         subCategory[i] = originSubCategory[i]
-
+'''
 for i in range(len(subCategory)):
     if subCategory[i][:-1].strip() == "":
         subCategory[i] = 'other,'
@@ -209,7 +215,7 @@ for i in range(len(category)):
 
 
 #맨 뒤에 콤마 빼기
-for i in range(len(category)):
+for i in range(len(subCategory)):
     category[i]=category[i][:-1]
     subCategory[i]=subCategory[i][:-1]
 
@@ -243,25 +249,51 @@ for element in lectureName:
         level[tmpNum] = 0
 
     tmpNum= tmpNum + 1
-
-print(len(lectureName), len(lectureLink), len(cost), len(level), len(profName),len(thumbUrl), len(rating), len(category), len(source), len(subCategory))
-
+'''
+print(
+    len(lectureName),
+    len(price),
+    len(lectureLink),
+    len(thumbnail),
+    len(level),
+    len(lecturer),
+    len(siteIdx),
+    len(rating),
+    len(contents),
+    len(category),
+    len(subCategory),
+    len(type),
+    len(language),
+    len(totalDuration),
+    len(numOfLectures)
+)
+'''
+'''
 for i in range(len(lectureName)):
-    print(lectureName[i],subCategory[i],level[i])
+    print(lectureName[i], " : ", category[i], " / ", originSubCategory[i], " - ", subCategory[i], " / ", level[i])
+'''
 
-df1 = pd.DataFrame({'lectureName':lectureName, \
-        'category': category, \
-        'subCategory': subCategory, \
-        'cost': cost, \
-        'lectureLink': lectureLink, \
-        'thumbUrl': thumbUrl,\
-        'level': level,\
-        'profName': profName,\
-        'rating': rating,\
-        'source': source})
+df1 = pd.DataFrame({
+    'lectureName' : lectureName,
+    'price':price,
+    'lectureLink':lectureLink,
+    'thumbnail':thumbnail,
+    'level':level,
+    'lecturer':lecturer,
+    'siteIdx':siteIdx,
+    'rating':rating,
+    'contents':contents,
+    'category':category,
+    'subCategory': subCategory,
+    'type':type,
+    'language' :language,
+    'totalDuration' : totalDuration,
+    'numOfLectures':numOfLectures,
+})
+
 print(df1)
-df1.to_csv('crawling.csv', encoding='utf-8-sig')
 
+df1.to_csv('EggheadCrawlingFile2.csv', encoding='utf-8-sig')
 
 
 
