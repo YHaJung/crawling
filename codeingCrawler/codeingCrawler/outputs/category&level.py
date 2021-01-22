@@ -3,6 +3,7 @@ import pandas as pd
 import re
 
 originSubCategory = []
+originCategory = []
 
 lectureName = [] # 강의명 string
 price = []  # 가격 int
@@ -51,13 +52,13 @@ algorithm = ['코딩테스트','알고리즘','algorithm','datastructure','자�
 network = ['해킹','hacking','네트워크','보안','암호','5g','security','encypt','악성코드','메타스플로잇','Metasploit']
 dataScience = ['hadoop','data','ds','데이터분석','시각화','visualization','pandas','sql','데이터','analytics','분석']
 cs = ['수학','확률', '자료구조','알고리즘','운영체제','operatingsystem','computerarchitecture','컴퓨터구조','datastructure','algorithm','softwareengineering','소프트웨어공학','컴퓨터과학','computerscience','statistic']
-#language = ['객체','파이썬','c언어','c++','자바','java','python','자바스크립트','c#','스크래치','scratch','js','기초프로그래밍'] # 가장 마지막에 확인
+language2 = ['객체','파이썬','c언어','c++','자바','java','python','자바스크립트','c#','스크래치','scratch','js','기초프로그래밍'] # 가장 마지막에 확인
 
-lv1 = ['begin','기본','기초','basic','기반','start','스타터','처음','초보','입문','초급','first','intro','쉽고','쉬운','쉽게','누구나','이해','일반인','첫','overview']
-lv3 = ['중급','intermediate','조금 더','활용']
-lv5 = ['응용','심화','실무','고급','실전','advanced','clone','클론','complex']
+lv1 = ['begin','기본','기초','basic','기반','start','스타터','처음','초보','입문','초급','first','intro','쉽고','쉬운','쉽게','누구나','이해','일반인','첫','overview', 'easy']
+lv3 = ['중급','intermediate','조금 더','활용', 'normal']
+lv5 = ['응용','심화','실무','고급','실전','advanced','clone','클론','complex', 'difficult']
 
-with open('KhanacademyCrawlingFile.csv','rt') as f:
+with open('GoormeduCrawlingFile.csv','rt') as f:
     reader = csv.DictReader(f)#확인하기
 
     for c in reader:
@@ -71,7 +72,7 @@ with open('KhanacademyCrawlingFile.csv','rt') as f:
             elif (k == 'siteIdx') : siteIdx.append(v)
             elif (k == 'rating') : rating.append(v)
             elif (k == 'contents') : contents.append(v)
-            elif (k == 'category') : category.append(v)
+            elif (k == 'category') : originCategory.append(v)
             elif (k == 'subCategory') : originSubCategory.append(v)
             elif (k == 'type') : type.append(v)
             elif (k == 'language') : language.append(v)
@@ -108,9 +109,9 @@ for e in range(len(lectureName)):
     else:
         tmpLecName = lectureName[e]
     '''
-    tmpLecName = lectureName[e]
+    tmpLecName = originSubCategory[e]+" "+lectureName[e]
 
-    #category.append("")
+    category.append("")
     check("web", web, tmpLecName, count)
     check("app", app, tmpLecName, count)
     check("backEnd", be, tmpLecName, count)
@@ -121,7 +122,7 @@ for e in range(len(lectureName)):
     check("dataScience", dataScience, tmpLecName, count)
     check("network", network, tmpLecName, count)
     check("computerScience", cs, tmpLecName, count)
-    check2("language", language, tmpLecName, count)
+    check2("language", language2, tmpLecName, count)
     count = count +1
 '''
 for i in range(len(lectureName)):
@@ -145,7 +146,7 @@ for k, v in subCategoryList.items():
     else:
         tmpSubCategory = lectureName[idx]
     '''
-    tmpSubCategory = re.sub("[:,로/]", " ", lectureName[idx])
+    tmpSubCategory = re.sub("[:,로/]", " ", originSubCategory[idx]+" "+lectureName[idx])
 
     '''
     if str(type(v)) == "<class 'str'>": # value가 하나
@@ -223,14 +224,17 @@ for i in range(len(subCategory)):
     subCategory[i]=subCategory[i][:-1]
 
 tmpNum = 0
-for element in lectureName:
+
+for element in level:
+#for element in lectureName:
     tmpValue = 0
     tmpCount = 0
 
+    '''
     if level[tmpNum] != 0 and level[tmpNum].strip() != "":
         tmpNum = tmpNum + 1
         continue
-
+'''
     for i in lv1:
         if i in element.lower():
             tmpValue = tmpValue + 1
@@ -271,11 +275,11 @@ print(
     len(numOfLectures)
 )
 '''
-'''
+
 for i in range(len(lectureName)):
     print(lectureName[i], " : ", category[i], " / ", subCategory[i], " / ", level[i])
 
-'''
+
 df1 = pd.DataFrame({
     'lectureName' : lectureName,
     'price':price,
@@ -296,7 +300,7 @@ df1 = pd.DataFrame({
 
 print(df1)
 
-df1.to_csv('KhanacademyCrawlingFile2.csv', encoding='utf-8-sig')
+df1.to_csv('GoormeduCrawlingFile2.csv', encoding='utf-8-sig')
 
 
 
