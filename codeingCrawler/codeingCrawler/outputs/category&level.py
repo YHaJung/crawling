@@ -35,7 +35,7 @@ subCategoryList = {'VR/AR':'가상현실','ajax':'ajax','BlockChain':['블록체
                'IoT':'사물인터넷','OpenCV':['오픈씨브이','opencv'],'Unreal Engine':['언리얼','unreal'],'Objective-C':['오브젝티브-c','objective-c'],
                'Unity':['유니티','unity'],'Linux':['리눅스','linux'],'Git':['깃','git'],'OAuth':'oauth','WordPress':['워드프레스','wordpress'],
                'Computer Vision':['컴퓨터비전','computervision'],'Deep Learning':['딥러닝','deeplearning'],'Machine Learning':['머신러닝','machinelearning'],
-            'CSS':'css','C':['c ','c언어'],'Go':'go ','ROR':' ror','VR/AR':['virtual reality','vr ',' ar '],'IoT':' iot','R':[' r ','r언어']
+            'CSS':'css','C':['c','c언어'],'Go':'go ','ROR':' ror','VR/AR':['virtual reality','vr ',' ar '],'IoT':' iot','R':[' r ','r언어']
             }
 
 #subCategoryList2 = {'CSS':'css','JavaScript':' js','C':['c ','c언어'],'Go':'go ','ROR':' ror','VR/AR':['virtual reality','vr ',' ar '],'IoT':' iot','R':[' r ','r언어']}
@@ -58,7 +58,7 @@ lv1 = ['begin','기본','기초','basic','기반','start','스타터','처음','
 lv3 = ['중급','intermediate','조금 더','활용', 'normal']
 lv5 = ['응용','심화','실무','고급','실전','advanced','clone','클론','complex', 'difficult']
 
-with open('GoormeduCrawlingFile.csv','rt') as f:
+with open('KocwCrawlingFile.csv','rt') as f:
     reader = csv.DictReader(f)#확인하기
 
     for c in reader:
@@ -109,7 +109,8 @@ for e in range(len(lectureName)):
     else:
         tmpLecName = lectureName[e]
     '''
-    tmpLecName = originSubCategory[e]+" "+lectureName[e]
+    #tmpLecName = originSubCategory[e]+" "+lectureName[e]
+    tmpLecName = lectureName[e] + " " + contents[e]
 
     category.append("")
     check("web", web, tmpLecName, count)
@@ -146,8 +147,9 @@ for k, v in subCategoryList.items():
     else:
         tmpSubCategory = lectureName[idx]
     '''
-    tmpSubCategory = re.sub("[:,로/]", " ", originSubCategory[idx]+" "+lectureName[idx])
 
+    #tmpSubCategory = re.sub("[:,로/]", " ", originSubCategory[idx]+" "+lectureName[idx])
+    tmpSubCategory = re.sub("[:,로/프로그래밍]", " ", lectureName[idx] + " " + contents[idx])
     '''
     if str(type(v)) == "<class 'str'>": # value가 하나
         if v in tmpSubCategory.lower().replace(" ",""):
@@ -225,8 +227,8 @@ for i in range(len(subCategory)):
 
 tmpNum = 0
 
-for element in level:
-#for element in lectureName:
+#for element in level:
+for element in lectureName:
     tmpValue = 0
     tmpCount = 0
 
@@ -275,11 +277,11 @@ print(
     len(numOfLectures)
 )
 '''
-
+'''
 for i in range(len(lectureName)):
     print(lectureName[i], " : ", category[i], " / ", subCategory[i], " / ", level[i])
 
-
+'''
 df1 = pd.DataFrame({
     'lectureName' : lectureName,
     'price':price,
@@ -300,7 +302,7 @@ df1 = pd.DataFrame({
 
 print(df1)
 
-df1.to_csv('GoormeduCrawlingFile2.csv', encoding='utf-8-sig')
+df1.to_csv('KocwCrawlingFile2.csv', encoding='utf-8-sig')
 
 
 
