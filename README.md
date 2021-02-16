@@ -1,4 +1,4 @@
-# chrawling - 2021.01.06~
+# chrawling - 2021.01.06
 ##framework : 스크래피
 참고 : https://livedata.tistory.com/26
 
